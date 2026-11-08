@@ -1,108 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="rta" content="RTA-5042-1996-1400-1577-RTA">
+<title>MySite – 18+ Anime</title>
+<style>
+  :root { --bg:#14111c; --card:#1f1a2e; --text:#eee; --muted:#9a93b0; --accent:#ff4b7d; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:Arial,sans-serif; line-height:1.5; }
+  a { color:inherit; text-decoration:none; }
+  header { background:#0e0c15; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:5; }
+  .logo { font-size:22px; font-weight:bold; color:var(--accent); }
+  nav a { margin-left:14px; color:var(--muted); font-size:14px; }
+  nav a:hover { color:#fff; }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  h2 { margin:18px 0 10px; font-size:18px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
+  .card { background:var(--card); border-radius:8px; overflow:hidden; }
+  .thumb { aspect-ratio:3/4; background:linear-gradient(135deg,#3a2c5e,#ff4b7d); display:flex; align-items:center; justify-content:center; color:#fff8; font-size:13px; }
+  .card .info { padding:8px 10px; font-size:14px; }
+  .card .info small { color:var(--muted); display:block; }
+  .ad-banner { display:block; position:relative; max-width:728px; margin:18px auto; padding:26px 16px; text-align:center; font-weight:bold; font-size:18px; color:#fff; background:linear-gradient(135deg,#ff416c,#ff4b2b); border-radius:8px; }
+  .ad-banner:hover { opacity:.9; }
+  .ad-label { position:absolute; top:4px; left:8px; font-size:11px; font-weight:normal; opacity:.8; }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:24px 16px 40px; border-top:1px solid #2a2440; margin-top:30px; }
+  footer a { text-decoration:underline; margin:0 6px; }
 
-    <title>Anime Watch</title>
-
-    <link rel="stylesheet" href="style.css">
+  /* Age gate */
+  #gate { position:fixed; inset:0; background:rgba(8,6,14,.97); z-index:99; display:flex; align-items:center; justify-content:center; padding:20px; }
+  #gate .box { background:var(--card); max-width:420px; padding:28px; border-radius:12px; text-align:center; }
+  #gate h1 { color:var(--accent); font-size:28px; margin-bottom:10px; }
+  #gate p { color:var(--muted); font-size:14px; margin-bottom:18px; }
+  #gate button, #gate a.leave { display:inline-block; padding:12px 22px; border-radius:6px; border:0; font-size:15px; cursor:pointer; margin:4px; }
+  #enter { background:var(--accent); color:#fff; }
+  .leave { background:#3a3450; color:#fff; }
+</style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>ANIME WATCH</h1>
-        <p>Watch your favorite anime</p>
-    </header>
+<div id="gate">
+  <div class="box">
+    <h1>18+</h1>
+    <p>This website contains adult content intended for adults only. By entering, you confirm you are at least 18 years old (or the legal age in your country) and that viewing adult content is legal where you live.</p>
+    <button id="enter">I am 18+ – Enter</button>
+    <a class="leave" href="https://www.google.com">Leave</a>
+  </div>
+</div>
 
+<header>
+  <a class="logo" href="#">MySite</a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#new">New</a>
+    <a href="#popular">Popular</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <!-- Anime Cards -->
-    <main class="anime-container">
+<main>
+  <!-- AD 1 -->
+  <a class="ad-banner" href="https://auctionr.org/4/81792bd93921a2c1f93369039dbba7ae" target="_blank" rel="sponsored noopener nofollow">
+    <span class="ad-label">Ad</span>18+ Special Offer – Click Here
+  </a>
 
-        <!-- Demon Slayer -->
-        <div class="anime-card">
+  <h2 id="new">New Uploads</h2>
+  <div class="grid" id="grid-new"></div>
 
-            <img src="images/demon-slayer.jpg" alt="Demon Slayer">
+  <!-- AD 2 -->
+  <a class="ad-banner" href="https://auctionr.org/4/81792bd93921a2c1f93369039dbba7ae" target="_blank" rel="sponsored noopener nofollow">
+    <span class="ad-label">Ad</span>Sponsored – Check it out
+  </a>
 
-            <h2>Demon Slayer</h2>
+  <h2 id="popular">Popular</h2>
+  <div class="grid" id="grid-pop"></div>
 
-            <a
-                href="https://uplcm.com/4/11971534"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="watch-btn"
-            >
-                WATCH VIDEO
-            </a>
+  <!-- AD 3 -->
+  <a class="ad-banner" href="https://auctionr.org/4/81792bd93921a2c1f93369039dbba7ae" target="_blank" rel="sponsored noopener nofollow">
+    <span class="ad-label">Ad</span>18+ Offer – Click Here
+  </a>
+</main>
 
-        </div>
+<footer id="contact">
+  <p>All characters depicted are 18 years or older. This site is for adults only.</p>
+  <p style="margin-top:8px">
+    <a href="#">18 U.S.C. 2257 / Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">DMCA</a>
+    <a href="#">Contact: your@email.com</a>
+  </p>
+  <p style="margin-top:8px">&copy; <span id="yr"></span> MySite</p>
+</footer>
 
+<script>
+  // Age gate (remembers choice in this browser)
+  (function () {
+    var gate = document.getElementById('gate');
+    try { if (localStorage.getItem('age_ok') === '1') gate.style.display = 'none'; } catch (e) {}
+    document.getElementById('enter').onclick = function () {
+      try { localStorage.setItem('age_ok', '1'); } catch (e) {}
+      gate.style.display = 'none';
+    };
+  })();
 
-        <!-- Naruto -->
-        <div class="anime-card">
-
-            <img src="images/naruto.jpg" alt="Naruto">
-
-            <h2>Naruto</h2>
-
-            <a
-                href="https://uplcm.com/4/11971534"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="watch-btn"
-            >
-                WATCH VIDEO
-            </a>
-
-        </div>
-
-
-        <!-- Attack on Titan -->
-        <div class="anime-card">
-
-            <img src="images/aot.jpg" alt="Attack on Titan">
-
-            <h2>Attack on Titan</h2>
-
-            <a
-                href="https://uplcm.com/4/11971534"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="watch-btn"
-            >
-                WATCH VIDEO
-            </a>
-
-        </div>
-
-
-        <!-- Solo Leveling -->
-        <div class="anime-card">
-
-            <img src="images/solo-leveling.jpg" alt="Solo Leveling">
-
-            <h2>Solo Leveling</h2>
-
-            <a
-                href="https://uplcm.com/4/11971534"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="watch-btn"
-            >
-                WATCH VIDEO
-            </a>
-
-        </div>
-
-    </main>
-
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Anime Watch</p>
-    </footer>
-
+  // Demo cards – replace titles/links/images with your own licensed content
+  function fill(id, n, prefix) {
+    var g = document.getElementById(id), h = '';
+    for (var i = 1; i <= n; i++) {
+      h += '<a class="card" href="watch.html?v=' + i + '"><div class="thumb">Thumbnail</div>' +
+           '<div class="info">' + prefix + ' Title ' + i + '<small>Episode ' + i + '</small></div></a>';
+    }
+    g.innerHTML = h;
+  }
+  fill('grid-new', 8, 'New');
+  fill('grid-pop', 8, 'Popular');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
