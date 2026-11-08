@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="rta" content="RTA-5042-1996-1400-1577-RTA">
+<title>Watch – MySite</title>
+<style>
+  :root { --bg:#14111c; --card:#1f1a2e; --text:#eee; --muted:#9a93b0; --accent:#ff4b7d; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:Arial,sans-serif; line-height:1.5; }
+  a { color:inherit; text-decoration:none; }
+  header { background:#0e0c15; padding:14px 16px; }
+  .logo { font-size:22px; font-weight:bold; color:var(--accent); }
+  main { max-width:900px; margin:0 auto; padding:16px; text-align:center; }
+  .ad-banner { display:block; position:relative; max-width:728px; margin:14px auto; padding:34px 16px; font-weight:bold; font-size:18px; color:#fff; background:linear-gradient(135deg,#ff416c,#ff4b2b); border-radius:8px; }
+  .ad-label { position:absolute; top:4px; left:8px; font-size:11px; font-weight:normal; opacity:.8; }
+  #wait { background:var(--card); border-radius:10px; padding:22px; margin-top:10px; }
+  #count { font-size:48px; font-weight:bold; color:var(--accent); }
+  .bar { height:8px; background:#2a2440; border-radius:4px; overflow:hidden; margin:14px 0; }
+  .bar i { display:block; height:100%; width:0; background:var(--accent); transition:width 1s linear; }
+  #player { display:none; }
+  video { width:100%; max-height:70vh; background:#000; border-radius:8px; }
+  .back { display:inline-block; margin-top:14px; color:var(--muted); font-size:14px; text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<header><a class="logo" href="index.html">MySite</a></header>
+
+<main>
+  <h2 id="title">Loading...</h2>
+
+  <!-- Ad shown while waiting -->
+  <a class="ad-banner" href="https://auctionr.org/4/81792bd93921a2c1f93369039dbba7ae" target="_blank" rel="sponsored noopener nofollow">
+    <span class="ad-label">Ad</span>18+ Special Offer – Click Here
+  </a>
+
+  <div id="wait">
+    <p>Your video will start in</p>
+    <div id="count">15</div>
+    <p>seconds</p>
+    <div class="bar"><i id="fill"></i></div>
+    <p style="color:var(--muted);font-size:13px">Ads help us keep this site free.</p>
+  </div>
+
+  <div id="player">
+    <video id="vid" controls playsinline preload="none" style="display:none"></video>
+    <iframe id="frame" style="display:none;width:100%;aspect-ratio:16/9;border:0;border-radius:8px;background:#000" allowfullscreen allow="autoplay; fullscreen"></iframe>
+  </div>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+
+  <a class="ad-banner" href="https://auctionr.org/4/81792bd93921a2c1f93369039dbba7ae" target="_blank" rel="sponsored noopener nofollow">
+    <span class="ad-label">Ad</span>Sponsored – Check it out
+  </a>
+</main>
+
+<script>
+  var WAIT = 15; // seconds (set 15 to 30)
+
+  // Your videos: put your own / licensed files here (id => file URL)
+  var videos = {
+    // Option A: direct file / cloud link (mp4)
+    "1": { title: "New Title 1", src: "https://YOUR-CDN/video1.mp4" },
+    // Option B: embed link from a host where you have the rights
+    "2": { title: "New Title 2", embed: "https://YOUR-HOST/embed/abc123" }
+    // add more...
+  };
+
+  var id = new URLSearchParams(location.search).get('v') || "1";
+  var item = videos[id] || { title: "Title " + id, src: "videos/" + id + ".mp4" };
+  document.getElementById('title').textContent = item.title;
+  document.title = item.title + " – MySite";
+
+  var left = WAIT;
+  var countEl = document.getElementById('count');
+  var fill = document.getElementById('fill');
+  countEl.textContent = left;
+
+  var timer = setInterval(function () {
+    left--;
+    countEl.textContent = Math.max(left, 0);
+    fill.style.width = ((WAIT - left) / WAIT * 100) + '%';
+    if (left <= 0) {
+      clearInterval(timer);
+      startVideo();
+    }
+  }, 1000);
+
+  function startVideo() {
+    document.getElementById('wait').style.display = 'none';
+    document.getElementById('player').style.display = 'block';
+    if (item.embed) {
+      var f = document.getElementById('frame');
+      f.src = item.embed;
+      f.style.display = 'block';
+    } else {
+      var v = document.getElementById('vid');
+      v.style.display = 'block';
+      v.src = item.src;
+      v.play().catch(function () {}); // some browsers need a tap to start
+    }
+  }
+</script>
+</body>
+</html>
